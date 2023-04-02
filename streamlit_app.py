@@ -29,7 +29,7 @@ archivo_subido = st.file_uploader("Sube tu ensayo", type=["txt", "docx", "pdf"])
 if archivo_subido is not None:
     # Detectar la codificación del archivo subido
     deteccion = chardet.detect(archivo_subido.read())
-    codificacion = deteccion['encoding'] or 'utf-8'  # Usar 'utf-8' como codificación predeterminada
+    codificacion = deteccion['encoding'] or 'latin-1'  # Usar 'latin-1' como codificación predeterminada
     archivo_subido.seek(0)  # Reinicia la posición del archivo a 0 para volver a leerlo
     
     # Leer el contenido del archivo y convertirlo en texto utilizando la codificación detectada
