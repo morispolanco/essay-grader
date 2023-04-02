@@ -10,9 +10,9 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 def evaluar_ensayo(texto_ensayo):
     prompt = f"Por favor, evalúa el siguiente ensayo:\n\n{texto_ensayo}\n\nCalificación:"
     response = openai.Completion.create(
-        engine="davinci-codex",
+        engine="text-davinci-003",
         prompt=prompt,
-        max_tokens=50,
+        max_tokens=150,
         n=1,
         stop=None,
         temperature=0.5,
