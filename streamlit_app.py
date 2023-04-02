@@ -3,8 +3,8 @@ import streamlit as st
 import openai
 import chardet  # Importa el paquete chardet
 
-# 3. Configurar la API de OpenAI utilizando su clave API:
-openai.api_key = "your_openai_api_key"
+# Accedemos a la clave de API de OpenAI a través de una variable de entorno
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # 4. Crear una función para evaluar el ensayo utilizando GPT:
 def evaluar_ensayo(texto_ensayo):
