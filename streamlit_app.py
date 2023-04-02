@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 import openai
+import chardet 
 
 # 3. Configurar la API de OpenAI utilizando su clave API:
 openai.api_key = os.environ.get("OPENAI_API_KEY")
@@ -19,6 +20,15 @@ def evaluar_ensayo(texto_ensayo):
     )
     calificacion = response.choices[0].text.strip()
     return calificacion
+
+if archivo_subido is not None:
+    # Detectar la codificación del archivo subido
+    deteccion = chardet.detect(archivo_subido.read())
+    codificacion = deteccion['encoding']
+    archivo_subido.seek(0)  # Reinicia la posición del archivo a 0 para volver a leerlo
+    
+    # Leer el contenido del archivo y convertirlo en texto utilizando la codificación detectada
+    texto_ensayo = archivo_subido.read().decode(codificacion)
 
 # 5. Utilizar Streamlit para crear la interfaz de usuario:
 st.title("Evaluador de Ensayos")
