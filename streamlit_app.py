@@ -8,7 +8,7 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # 4. Crear una función para evaluar el ensayo utilizando GPT:
 def evaluar_ensayo(texto_ensayo):
-    prompt = f"Por favor, evalúa el siguiente ensayo:\n\n{texto_ensayo}\n\nCalificación:"
+    prompt = f"Por favor, evalúa y justifica el siguiente ensayo:\n\n{texto_ensayo}\n\nCalificación y justificación:"
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
@@ -17,8 +17,8 @@ def evaluar_ensayo(texto_ensayo):
         stop=None,
         temperature=0.5,
     )
-    calificacion = response.choices[0].text.strip()
-    return calificacion
+    calificacion_y_justificacion = response.choices[0].text.strip()
+    return calificacion_y_justificacion
 
 # 5. Utilizar Streamlit para crear la interfaz de usuario:
 st.title("Evaluador de Ensayos")
